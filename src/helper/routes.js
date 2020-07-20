@@ -2,8 +2,8 @@ import * as React from "react";
 import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoginComponent from "../login/loginComponent";
-import SignUpComponent from "../signup/signupComponent";
+import LoginComponent from "../screens/login/loginComponent";
+import SignUpComponent from "../screens/signup/signupComponent";
 const Stack = createStackNavigator();
 
 const Routes = () => {
