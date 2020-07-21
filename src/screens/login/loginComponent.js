@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Keyboard,
   Text,
@@ -12,7 +12,25 @@ import { Button } from "react-native-elements";
 import styles from "./loginStyle";
 
 const LoginComponent = ({ navigation }) => {
-  const [value, onChangeText] = React.useState("Useless");
+  const [state, setState] = useState({ email: "", password: "" });
+
+  const onCreateAccountPress = navigation => {
+    navigation.navigate("Sign Up");
+  };
+
+  const onLoginPress = navigation => {
+    // navigation.navigate("Sign Up");
+    console.log("login data", state);
+  };
+
+  const handleChange = (e, name) => {
+    const { text } = e.nativeEvent;
+    setState(prevState => ({
+      ...prevState,
+      [name]: text
+    }));
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -26,16 +44,23 @@ const LoginComponent = ({ navigation }) => {
               source={require("../../assets/qr.png")}
             />
           </View> */}
-          <TextInput placeholder="Username" style={styles.textInput} />
+          <TextInput
+            placeholder="Email"
+            style={styles.textInput}
+            name="email"
+            onChange={e => handleChange(e, "email")}
+          />
           <TextInput
             placeholder="Password"
             style={styles.textInput}
+            name="password"
             secureTextEntry={true}
+            onChange={e => handleChange(e, "password")}
           />
           <Button
             style={styles.loginButton}
             title="LOGIN"
-            onPress={() => null}
+            onPress={() => onLoginPress()}
           />
           <Text
             style={styles.createAccount}
@@ -47,14 +72,6 @@ const LoginComponent = ({ navigation }) => {
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
-};
-
-const onCreateAccountPress = navigation => {
-  navigation.navigate("Sign Up");
-};
-
-const onLoginPress = navigation => {
-  // navigation.navigate("Sign Up");
 };
 
 export default LoginComponent;

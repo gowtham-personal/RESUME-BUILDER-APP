@@ -12,7 +12,8 @@ import { Button } from "react-native-elements";
 import styles from "../login/loginStyle";
 
 const SignUpComponent = ({ navigation }) => {
-  const [value, onChangeText] = React.useState("Useless");
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS == "ios" ? "padding" : "height"}
@@ -26,7 +27,6 @@ const SignUpComponent = ({ navigation }) => {
             source={require("../../assets/qr.png")}
           />
         </View> */}
-          <TextInput placeholder="Username" style={styles.textInput} />
           <TextInput placeholder="Email" style={styles.textInput} />
           <TextInput
             placeholder="Password"
